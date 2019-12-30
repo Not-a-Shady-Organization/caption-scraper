@@ -37,6 +37,10 @@ def scrape_captions(video_code):
     # Download the captions to local disk
     download_captions(video_code)
 
+    # If no automatic captions exist, no download will occur
+    if not os.path.exists(filepath):
+        raise ValueError(f'No captions exist for video code {video_code}')
+
     # Grab every words' time interval and write to Datastore
     ret = atomize_captions(video_code, filepath)
     return ret

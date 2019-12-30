@@ -15,8 +15,9 @@ def kickoff_poem_stitcher():
     try:
         return str(scrape_captions(**data))
     except Exception as e:
+        # Good for debugging, very bad for security
         tb = traceback.format_exc()
-        raise e
+        return str(tb)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
